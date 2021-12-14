@@ -24,6 +24,16 @@ namespace HeadUnlock
                 File.WriteAllText(KeybindFile, "LeftAlt");
             }
             Keybind = Enum.TryParse(File.ReadAllText(KeybindFile), out Keybind) ? Keybind : KeyCode.LeftAlt;
+            FileSystemWatcher watcher = new FileSystemWatcher(Path.GetDirectoryName(KeybindFile), Path.GetFileName(KeybindFile))
+            {
+                NotifyFilter = NotifyFilters.LastWrite,
+                EnableRaisingEvents = true
+            };
+            watcher.Changed += delegate (object obj, FileSystemEventArgs args)
+            {
+                KeyCode lastKeybind = Keybind;
+                Keybind = Enum.TryParse(File.ReadAllText(KeybindFile), out Keybind) ? Keybind : lastKeybind;
+            };
         }
         public override void OnUpdate()
         {
