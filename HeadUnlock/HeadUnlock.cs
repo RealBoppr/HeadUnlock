@@ -7,7 +7,7 @@ using VRC.DataModel;
 
 [assembly: MelonColor(ConsoleColor.DarkBlue)]
 [assembly: MelonGame("VRChat", "VRChat")]
-[assembly: MelonInfo(typeof(HeadUnlock.Main), "HeadUnlocker", "1.1", "Cloudie")]
+[assembly: MelonInfo(typeof(HeadUnlock.Main), "HeadUnlocker", "1.2", "Cloudie")]
 
 namespace HeadUnlock
 {
